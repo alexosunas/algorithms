@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort</title>
+</head>
+<body>
+    <h1>Selecting right jobs</h1>
+<script type="text/javascript">
+    let movies = [
+       {
+        name: 'ttj',
+        init: 3,
+        end: 6
+       },
+       {
+        name: 'tpa',
+        init: 1,
+        end: 5
+       },
+       {
+        name: 'dm',
+        init: 2,
+        end: 4
+       },
+       {
+        name: 'hs',
+        init: 4,
+        end: 7
+       },
+       {
+        name: 'st',
+        init: 5,
+        end: 9
+       },
+       {
+        name: 'tfvp',
+        init: 8,
+        end: 12
+       },
+       {
+        name: 'pc',
+        init: 9,
+        end: 11
+       },
+       {
+        name: 'pt',
+        init: 10,
+        end: 13
+       },
+       {
+        name: 'cb',
+        init: 11,
+        end: 14
+       }
+    ];
+
+    let movieWithErliestEndDate = 0;
+    let evaluateToDelete = 0;
+    let wasDeleted = false;
+        
+    for(let i = 0; i < movies.length - 1; i++){
+
+        if(movies[i].end <= movies[i + 1].end){
+            movieWithErliestEndDate = i;
+            evaluateToDelete = i + 1;
+        }else{
+            movieWithErliestEndDate = i + 1;
+            evaluateToDelete = i;
+        }
+
+        if(movies[evaluateToDelete].init < movies[movieWithErliestEndDate].end){
+            movies.splice(evaluateToDelete, 1);
+            wasDeleted = true;
+        }
+
+        if(wasDeleted){
+            i --;
+            wasDeleted = false;
+        }
+    }
+
+    console.log('movies: ', movies);
+
+    
+</script>
+</body>
+</html>

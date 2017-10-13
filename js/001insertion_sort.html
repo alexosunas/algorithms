@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort</title>
+</head>
+<body>
+    <h1>Insertion sort</h1>
+<script type="text/javascript">
+    let letters = ['i','n','s','e','r','t','i','o','n','s','o','r','t'];
+    let save = '';
+    for(let i = 1; i<letters.length; i++){
+        for(let j = 0; j < i; j++){
+            save = letters[i];
+            if(letters[i]<letters[j]){
+                letters[i] = letters[j];
+                letters[j] = save;
+            }
+        }
+        console.log('letters: ', letters);
+    }
+</script>
+</body>
+</html>

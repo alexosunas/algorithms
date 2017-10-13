@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort</title>
+</head>
+<body>
+    <h1>Selecting right jobs</h1>
+<script type="text/javascript">
+    let movies = [
+       {
+        name: 'ttj',
+        init: 3,
+        end: 6
+       },
+       {
+        name: 'tpa',
+        init: 1,
+        end: 5
+       },
+       {
+        name: 'dm',
+        init: 2,
+        end: 4
+       },
+       {
+        name: 'hs',
+        init: 4,
+        end: 7
+       },
+       {
+        name: 'st',
+        init: 5,
+        end: 9
+       },
+       {
+        name: 'tfvp',
+        init: 8,
+        end: 12
+       },
+       {
+        name: 'pc',
+        init: 9,
+        end: 11
+       },
+       {
+        name: 'pt',
+        init: 10,
+        end: 13
+       },
+       {
+        name: 'cb',
+        init: 11,
+        end: 14
+       }
+    ];
+
+    let bestPaths = [];
+    let currentPath = [];
+
+    for(let j = 0; j < movies.length; j++){
+        
+        currentPath = [];
+        for(let i = j; i < movies.length; i++){
+            if(!currentPath.length || currentPath[currentPath.length - 1].end <= movies[i].init){
+                currentPath.push(movies[i]);
+            }
+        }
+
+        if(!bestPaths.length || currentPath.length >= bestPaths.length){
+            bestPaths = currentPath;
+        }
+    }
+
+    console.log('bestPaths: ', bestPaths);
+
+    
+</script>
+</body>
+</html>
