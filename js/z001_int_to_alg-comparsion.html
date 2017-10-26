@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort</title>
+</head>
+<body>
+    <h1>Selecting right jobs</h1>
+<script type="text/javascript">
+
+let getQuadraticPerformance = function(n, constantValue){
+  return constantValue * (Math.pow(n,2));
+}
+
+let getLogarithmicPerformance =  function(n){
+ return 64*(n*Math.log(n));
+}
+
+let getExponentialPerformance =  function(n){
+ return 8 * (Math.pow(2, n));
+}
+
+// comparing quadratic with logarithmic where 8n^2 and 64n lg n
+for(let i = 0; i <= 10; i++){
+
+  // let randomNum = Math.floor(Math.random() * (100000 - 2 + 1)) + 2;
+   let randomNum = i * 4 + 2;
+
+  // At this point Logarithmic behavior becomes more efficient than quadratic
+  // quadratic with 26 :  5408
+  // Logarithmic with 26 :  5421.472639267747
+
+  console.log('quadratic with ' + randomNum + ' : ', getQuadraticPerformance(randomNum, 8));
+  console.log('Logarithmic with ' + randomNum + ' : ', getLogarithmicPerformance(randomNum));
+}
+ 
+
+ // comparing quadratic with exponential where 100n^2 and 2^n
+for(let i = 0; i <= 10; i++){
+
+  // let randomNum = Math.floor(Math.random() * (100000 - 2 + 1)) + 2;
+   let randomNum = i * 4 + 2;
+
+  // At this point Quadratic behavior becomes more efficient than exponential
+  // quadratic with 14 :  19600
+  // Exponential with 14 :  131072
+
+  console.log('quadratic with ' + randomNum + ' : ', getQuadraticPerformance(randomNum, 100));
+  console.log('Exponential with ' + randomNum + ' : ', getExponentialPerformance(randomNum));
+}   
+</script>
+</body>
+</html>

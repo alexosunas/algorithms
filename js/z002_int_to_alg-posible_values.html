@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort</title>
+</head>
+<body>
+    <h1>Finding N in a determined time</h1>
+<script type="text/javascript">
+
+// que posible values of n to take determined time to be executed.
+
+let getValuesForSimpleLog = function(t){
+	return Math.pow(2, t);
+};
+
+
+// lg n = t and 2^t = n
+let evaluateForLogarithmic = function(){
+	let times = [1, 60, 3600, 86400, 2592000];
+	let timeUnit = '';
+	let currentTim = 0;
+
+	for(let i = 0; i < times.length; i++){
+		currentTime = times[i];
+		timeUnit = getTimeValue(currentTime);
+
+		console.log('currentTime : ', currentTime);
+		console.log('Math.pow(currentTime)  : ', Math.pow(currentTime, 2));
+		console.log('Value for "n" (in lg n) is ' + Math.pow(currentTime, 2) + ' in one ' + timeUnit );
+	}
+};
+
+let getTimeValue = function(time){
+	let unit = '';
+
+	switch(time){
+		case 1:
+			unit = 'second';
+			break;
+		case 60:
+			unit = 'minute';
+			break;
+		case 3600:
+			unit = 'hour';
+			break;
+		case 86400:
+			unit = 'day';
+			break;
+		case 2592000:
+			unit = 'month';
+			break;
+	}
+
+	return unit; 
+
+};
+
+evaluateForLogarithmic();
+
+</script>
+</body>
+</html>
