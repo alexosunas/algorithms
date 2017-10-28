@@ -1,4 +1,4 @@
-# opics to learn:
+# Topics to learn:
 
 ## A) Get familiar with the functions to express complexity and understand at what point one complexity became more efficient than others
 * Example: 
