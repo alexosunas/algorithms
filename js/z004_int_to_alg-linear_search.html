@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Linear search</title>
+</head>
+<body>
+    <h1>Linear search</h1>
+<script type="text/javascript">
+//Exercise 2.1-3
+
+let ages = [31, 41, 59, 26, 32, 41, 58];
+
+let getAgeIndex = function(ageToFind){
+	let index = null;
+    for(let i = 0; i < ages.length; i++){
+		  if(ageToFind === ages[i]){
+        index = i;
+        break;
+      }
+    }
+    return index;
+}
+
+console.log('The index of 32 is : ', getAgeIndex(32));
+console.log('The index of 56 is : ', getAgeIndex(56));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Selection Sort</title>
+</head>
+<body>
+    <h1>Selection Sort</h1>
+<script type="text/javascript">
+//Exercise 2.2-2
+
+let scores = [31, 41, 59, 26, 32, 41, 58];
+
+let selectionSorted = function(scores){
+	let smallest = null;
+  let smallestIndex = 0;
+  let aux = 0;
+
+  for(let i = 0; i < scores.length -1; i++){
+    for(let j = i; j < scores.length; j++){
+      if(smallest === null || scores[j] < smallest){
+        smallest = scores[j];
+        smallestIndex = j
+      }
+    }
+
+    aux = scores[i];
+    scores[i] = scores[smallestIndex];
+    scores[smallestIndex] = aux;
+    smallest = null;
+  }
+  
+  return scores;
+}
+
+console.log('Sort scores : ', selectionSorted(scores));
+
+// 1 Loop invariant: is the portion of the array that is already sorted determined by the index "i" in the subarray score[0.. score[i]]
+
+// 2 Why does it need to run for only the first "n-1" elements?
+// because the last element will not have other elements to be compared with.
+
+// best and worst case scenarios are O(n^2) because always is going to iterate the array "n" times looking for the smallest number.
+
+</script>
+</body>
+</html>
