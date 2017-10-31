@@ -19,3 +19,5 @@
 * size of input (page 25)
 * Worst-case and average-case analysis (page 27)
 * Order of growth (page 28)
+
+## E) The divide-and-conquer approach (30)

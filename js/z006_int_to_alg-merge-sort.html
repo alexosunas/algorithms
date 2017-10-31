@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge Sort</title>
+</head>
+<body>
+    <h1>Merge Sort</h1>
+<script type="text/javascript">
+//2.3 Designing algorithms
+// I couldn't make it work by the book style, in general the pseudo code style does not apply to the js language simplicity
+// look at z007_int_to_alg-merge_sort_fixed.html for a more efficient implementation
+
+let goals = [2, 4, 5, 7, 1, 2, 3, 6];
+
+let merge =  function(goals, p, q, r){
+
+  console.log('p : ', p);
+  console.log('q : ', q);
+  console.log('r : ', r);
+
+  let n1 = q - p + 1;
+  let n2 = r - q;
+  let left = [];
+  let right = [];
+  let leftLength = n1;
+  let rightLength = n2;
+
+  console.log('n1 : ', n1);
+  console.log('n2 : ', n2);
+  console.log('left : ', left);
+  console.log('right : ', right);
+  console.log('leftLength : ', leftLength);
+  console.log('rightLength : ', rightLength);
+
+
+  for (let i = 0; i < leftLength; i++) {
+
+    console.log('i : ', i);
+    console.log('goals[p + i] : ', goals[p + i]);
+    left[i] = goals[p + i];
+
+    console.log('left : ', left);
+  }
+
+  for (let j = 0; j < rightLength; j++) {
+    console.log('j : ', j);
+    console.log('goals[q + j + 1] : ', goals[q + j + 1]);
+    right[j] = goals[q + j + 1];
+    console.log('right : ', right);
+  }
+
+  // left.push('*');
+  // right.push('*');
+
+  let l = 0;
+  let m = 0;
+
+  console.log('left : ', left);
+    console.log('right : ', right);
+
+  for(let k = p; k <= r; k++){
+    console.log('k : ', k);
+    console.log('l : ', l);
+    console.log('m : ', m);
+    console.log('left[l] : ', left[l]);
+    console.log('right[m] : ', right[m]);
+
+    if(left[l] <= right[m]){
+      console.log('Left is Smaller ');
+      goals[k] = (l === left.length)? right[m] : left[l];
+      l++
+    }else{
+      console.log('Right is Smaller ');
+      goals[k] = (m === right.length)? left[l] : right[m];
+      m++
+    }
+
+    console.log('goals : ', goals);
+  }
+
+  // return goals;
+};
+
+let mergeSort = function(goals, p, r){
+  console.log('mergeSort p', p);
+  console.log('mergeSort r', r);
+
+  if(p < r){
+    q = parseInt((p + r) / 2);
+  console.log('q', q);
+    mergeSort(goals, p, q);
+    mergeSort(goals, q + 1, r);
+    merge(goals, p, q, r);
+  }
+} 
+
+mergeSort(goals, 0, goals.length - 1);
+
+//console.log('goals sorted : ', merge(goals, 0, 3, 7));
+
+
+
+</script>
+</body>
+</html>

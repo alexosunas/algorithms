@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge Sort</title>
+</head>
+<body>
+    <h1>Merge Sort</h1>
+<script type="text/javascript">
+//2.3 Designing algorithms
+// in more efficient style
+
+let goals = [2, 4, 9, 5, 7, 1, 2, 8, 3, 6];
+
+let mergeSort = (arr) => {
+
+  if(arr.length === 1){
+    return arr;
+  }
+
+  let middle = parseInt(arr.length / 2);
+  let left = arr.slice(0, middle);
+  let right = arr.slice(middle);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+let merge = (left, right) => {
+
+  let sorted = []
+  while(left.length && right.length){
+    if(left[0] < right[0]){
+      sorted.push(left.shift());
+    }else{
+      sorted.push(right.shift());
+    }
+  }
+
+  while(left.length){
+    sorted.push(left.shift());
+  }
+
+  while(right.length){
+    sorted.push(right.shift());
+  }
+
+  console.log('sorted : ', sorted);
+
+  return sorted;
+};
+
+console.log('Merge Sort result : ', mergeSort(goals));
+
+
+//the compexity is O(n log n)
+// n items iterated log(n) times gives O(n log(n)).
+</script>
+</body>
+</html>
