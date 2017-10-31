@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recursive insertion Sort</title>
+</head>
+<body>
+    <h1>Recursive insertion Sort</h1>
+<script type="text/javascript">
+// 2.3-4
+
+let goals = [2, 4, 9, 5, 7, 1, 2, 8, 3, 6];
+
+
+let insertionSort = (arr, count) => {
+
+  if(arr.length < 2){
+    return arr;
+  }
+
+  let lastElement = arr.pop();
+
+  let sortedArr = insertionSort(arr, count + 1);
+
+  for(let i = 0; i < sortedArr.length; i++){
+    if(lastElement < sortedArr[i]){
+      sortedArr.splice(i, 0, lastElement);
+      break;
+    }else if(i === sortedArr.length - 1){
+      sortedArr.push(lastElement);
+      break
+    }
+  }
+
+  console.log('sortedArr : ', sortedArr);
+
+  return sortedArr;
+};
+
+console.log("Sorted by recursive insertion sort: ", insertionSort(goals, 0));
+
+//complexity is O(n^2) since the array is divided 1 item at the time, then n items n times is n x n
+
+</script>
+</body>
+</html>
