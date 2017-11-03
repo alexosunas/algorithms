@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary search</title>
+</head>
+<body>
+    <h1>Binary search</h1>
+<script type="text/javascript">
+// 2.3-5
+
+// Assume that the array is already sorted by any of the algorithms previously seen
+let goals = [1, 2, 2, 3, 4, 5, 6, 8, 9];
+
+let binarySearch = (arr, value, minIndex, maxIndex) => {
+
+  minIndex = minIndex || 0;
+  maxIndex = (maxIndex === undefined)? arr.length -1 : maxIndex;
+
+  let positions = parseInt((maxIndex - minIndex + 1) / 2);
+  let middle = positions + minIndex;
+
+  if(maxIndex <= minIndex){
+    return (arr[middle] === value)? middle : null;
+  }
+
+  if(value === arr[middle]){
+    return middle;
+
+  }else if(value < arr[middle]){
+  
+    return binarySearch(arr, value, minIndex, middle - 1);
+  
+  }else if(value > arr[middle]){
+    return binarySearch(arr, value, middle + 1, maxIndex);
+  }
+}
+
+console.log("******* goals : ", goals);
+console.log("******* Find 1 index by binary search : ", binarySearch(goals, 1));
+console.log("******* Find 2 index by binary search : ", binarySearch(goals, 2));
+console.log("******* Find 7 index by binary search : ", binarySearch(goals, 7));
+console.log("******* Find 4 index by binary search : ", binarySearch(goals, 4));
+console.log("******* Find 9 index by binary search : ", binarySearch(goals, 9));
+console.log("******* Find 3 index by binary search : ", binarySearch(goals, 3));
+console.log("******* Find 5 index by binary search : ", binarySearch(goals, 5));
+console.log("******* Find 6 index by binary search : ", binarySearch(goals, 6));
+console.log("******* Find 8 index by binary search : ", binarySearch(goals, 8));
+console.log("******* Find 0 index by binary search : ", binarySearch(goals, 0));
+console.log("******* Find 10 index by binary search : ", binarySearch(goals, 10));
+
+//complexity is O(log n) since the search is made in the half of the subarray a[minIndex.. maxIndex] each iteration, and the other half is discarded
+
+</script>
+</body>
+</html>

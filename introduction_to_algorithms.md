@@ -30,3 +30,6 @@
 
 ## G) Recursive insertion sort (page 39)
 * see file `js/z008_int_to_alg-recursive_insertion_sort.html` for the code implementation.
+
+## D) Binary Search (page 39)
+* see `file z009_int_to_alg-binary_search.html` for the code implementation.
