@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lieneal Fibonacci Numbers</title>
+</head>
+<body>
+    <h1>Lineal Fibonacci Numbers</h1>
+<script type="text/javascript">
+//CRACKING THE CODING INTERVIEW
+//Example 13
+
+
+let fibonacci = (number, stack) => {
+	// console.log('number : ', number);
+	// console.log('stack : ', stack);
+
+	// console.log('stack[number] : ', stack[number]);
+	if(stack[number]){
+		return stack[number];
+	}else if(number <= 0){
+		return 0;
+	}else if(number === 1){
+		return 1
+	}
+
+	stack[number - 1] = fibonacci(number - 1, stack);
+	stack[number - 2] = fibonacci(number - 2, stack);
+
+	return stack[number - 1] + stack[number - 2];
+};
+
+for (var i = 0; i <= 10; i++) {
+	console.log('the ' + i + ' fibonacci number is : ', fibonacci(i, []));
+}
+
+
+//complexity is O(n), since it store (caches) previously computed values. *\o/*
+
+</script>
+</body>
+</html>

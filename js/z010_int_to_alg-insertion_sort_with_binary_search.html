@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort with binary search</title>
+</head>
+<body>
+    <h1>Insertion sort with binary search</h1>
+<script type="text/javascript">
+//Introdiction to algorithms
+//Chapter 2 Getting Started
+
+let youngAges = [5,2,4,6,1,3];
+let oldAges = [1, 55, 29, 13, 110, 0, 32, 98, 2, 1011, 92, 42];
+
+let insertionSort = function(ages){
+	let element = 0;
+	let index = 0;
+
+	for(let j = 1; j < ages.length; j++){
+
+		index = binarySearch(ages.slice(0, j), ages[j]);
+
+		element = ages.splice(j, 1)[0];
+		console.log('ages[index] : ', ages[index]);
+		console.log('element: ', element);
+		console.log('j: ', j);
+		console.log('index: ', index);
+		if(ages[index] < element && j !== index){
+			index = index + 1;
+		}
+
+		ages.splice(index, 0, element);
+
+		console.log('2 ages : ', ages);
+	}
+
+	return ages;
+}
+
+let binarySearch = (arr, value, minIndex, maxIndex) => {
+
+  minIndex = minIndex || 0;
+  maxIndex = (maxIndex === undefined)? arr.length - 1 : maxIndex;
+
+  let positions = parseInt((maxIndex - minIndex + 1) / 2);
+  let middle = positions + minIndex;
+
+  if(maxIndex <= minIndex){
+    return middle;
+  }
+
+  if(value === arr[middle]){
+    return middle;
+
+  }else if(value < arr[middle]){
+    return binarySearch(arr, value, minIndex, middle - 1);
+  
+  }else if(value > arr[middle]){
+    return binarySearch(arr, value, middle + 1, maxIndex);
+  }
+}
+
+let test = [2, 4, 5, 59, 23];
+console.log('young Ages : ', insertionSort(youngAges));
+console.log('old Ages : ', insertionSort(oldAges));
+console.log('test : ', insertionSort(test));
+
+// youngAges = [5,2,4,6,1,3];
+// oldAges = [31,41,59,26,41,58];
+
+// console.log('young Reversed Ages : ', insertionReverseSort(youngAges));
+// console.log('old Reversed Ages : ', insertionReverseSort(oldAges));
+
+</script>
+</body>
+</html>

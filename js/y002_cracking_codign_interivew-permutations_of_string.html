@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Permutations of a String</title>
+</head>
+<body>
+    <h1>Permutations of a String</h1>
+<script type="text/javascript">
+//CRACKING THE CODING INTERVIEW
+//Example 12
+
+
+//Asume that string has been already splited
+let stringArr = ['a', 'b', 'c', 'd'];
+
+let permutation = (stringArr, swipeIndex, counter) =>{
+	
+	counter = counter || 0;
+	// console.log('********************* counter:', counter)
+	if(counter < 100){
+
+		// console.log('stringArr 1 :' +  stringArr);
+		swipeIndex = (swipeIndex === undefined)? 0 : swipeIndex;
+		let swiperdArr = [];
+		let copy = [];
+		// console.log('swipeIndex 1 :', swipeIndex);
+		// console.log('stringArr.length :', stringArr.length);
+
+		if(swipeIndex === stringArr.length - 1){
+			 console.log('Final!!');
+			 console.log('Result : ' + stringArr);
+		}else{
+
+
+			for (var i = swipeIndex; i < stringArr.length; i++) {
+				// console.log('CALL :', counter);
+				// console.log('stringArr 2 :' +  stringArr);
+				// console.log('swipeIndex 2 :', swipeIndex);
+				// console.log('i', i);
+				copy = stringArr;
+				// console.log('copy', copy);
+				swiperdArr = swipe(stringArr.slice(), swipeIndex, i);
+				stringArr = copy;
+				// console.log('copy 2', copy);
+				// console.log('stringArr copied', stringArr);
+				// console.log('swiperdArr 2 :' + swiperdArr);
+
+				// if(i === stringArr.length - 1){
+				// 	// console.log('end of array ')
+				// 	swipeIndex = swipeIndex + 1;
+				// }
+
+				permutation(swiperdArr, swipeIndex + 1, counter + 1);
+			}
+		}
+	}
+}
+
+let swipe = (stringArr, swipeIndex, i) => {
+
+	// console.log('swipe swipeIndex :', swipeIndex);
+	// console.log('swipe i :', i);
+	let aux = stringArr[swipeIndex];
+	stringArr[swipeIndex] = stringArr[i];
+	stringArr[i] = aux;
+	return stringArr;
+}
+
+permutation(stringArr);
+
+//complexity O(n!) => (n factorial) since it needs 1 * 2 * ... n-1 * n;
+
+</script>
+</body>
+</html>

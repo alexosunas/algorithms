@@ -26,10 +26,17 @@
 * Combine
 
 ## F) Merge Sort Algorithm (page 30)
-* see file `js/z007_int_to_alg-merge_sort_fixed.html` for the code implementation.
+* see file `z007_int_to_alg-merge_sort_fixed.html` for the code implementation.
 
 ## G) Recursive insertion sort (page 39)
-* see file `js/z008_int_to_alg-recursive_insertion_sort.html` for the code implementation.
+* see file `z008_int_to_alg-recursive_insertion_sort.html` for the code implementation.
 
 ## D) Binary Search (page 39)
-* see `file z009_int_to_alg-binary_search.html` for the code implementation.
+* see file `z009_int_to_alg-binary_search.html` for the code implementation.
+
+## E) Insertion sort with binary search (page 39)
+* see file `z010_int_to_alg-insertion_sort_with_binary_search.html` for the code implementation
+
+## F) Bubble sort (page 40)
+* see file `z011_int_to_alg-bubble_sort.html` for the code implementation
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quick Sort</title>
+</head>
+<body>
+    <h1>Quick Sort</h1>
+<script type="text/javascript">
+//CRACKING THE CODING INTERVIEW
+//VI Big O
+
+let youngAges = [5, 2, 6, 4, 1, 3];
+let oldAges = [1, 55, 29, 13, 110, 0, 32, 98, 2, 1011, 92, 42];
+
+
+let quickSort = function(ages){
+	let sortedIndex = 0;
+	let aux = 0;
+	let swiped = false;
+	let i = 0;
+	do{
+			// console.log('ages 1: ', ages);
+			// console.log('i : ', i);
+		swiped = false;
+		sortedIndex = i + 1;
+
+		for (var j = i + 1; j < ages.length; j++) {
+		// console.log('sortedIndex : ', sortedIndex);
+		// 	console.log('j : ', j);
+		// 	console.log('ages[j] : ', ages[j]);
+		// 	console.log('ages[i] : ', ages[i]);
+			if(ages[j] < ages[i]){
+				// console.log('MENOR : ');
+				aux = ages[j];
+				// console.log('aux : ', aux);
+				ages[j] = ages[sortedIndex];
+				ages[sortedIndex] = aux;
+				sortedIndex ++;
+				swiped = true;
+				// console.log('sortedIndex : ', sortedIndex);
+			}
+			// console.log('ages 2: ', ages);
+		}
+
+		aux = ages[i];
+		ages[i] = ages[sortedIndex -1];
+		ages[sortedIndex -1] = aux;
+
+
+		if(!swiped){
+			// console.log('NO SWIPE : ');
+			i++;
+		}
+
+	}while(i < ages.length -1)
+
+	return ages;
+}
+
+console.log('young Ages : ', quickSort(youngAges));
+console.log('old Ages : ', quickSort(oldAges));
+
+//complexity O(n^2)
+
+</script>
+</body>
+</html>

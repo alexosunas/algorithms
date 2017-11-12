@@ -1,5 +1,5 @@
 # Algorithms study group
-This is a roadmap to became proeficient in computational algorithms based on recomendations from teammates (software gurus) and some research in google, this guide is open to sujestions for modifications and inprovements.
+This is a roadmap to became proficient in computational algorithms based on recommendations from teammates (software gurus) and some research in google, this guide is open to suggestions for modifications and improvements.
 
 ## Books:
 
