@@ -28,3 +28,6 @@
 ## k) Example 13: Compute the Nth fibonacci number (page 52)
 * See file `y003_cracking_codign_interivew-fibonacci_bumbers` for implementation
 	* read note about big theta on page 39 for a details.
+
+## L) Example 15: linear fibonacci numbers
+* See file `y004_cracking_codign_interivew-linear_fibonacci` for implementation
