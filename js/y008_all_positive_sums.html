@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Int sqrt</title>
+</head>
+<body>
+    <h1>Int sqrt</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: print all positive integer solution ot the ecuation a^3 + b^3 = c^3 + d^3 where a,b,c,d are int from 1 to 1000
+
+var getPairs = function(max){
+	let pairs = []
+	for(let i = 1; i <= max; i++){
+		for(let j = 1; j <= max; j++){
+			pairs.push([i, j]);
+		}
+	}
+
+	return pairs;
+};
+
+var printPairs = function(pairs){
+	 console.log(pairs.length);
+	for(let i of pairs){
+		for(let j of pairs){
+			let abSum = i[0] + i[1];
+			let cdSum = j[0] + j[1];
+
+			if(abSum === cdSum){
+				console.log(`(${i[0]}, ${i[1]})(${j[0]}, ${j[1]})`);
+				console.log(`(${abSum})(${cdSum})`);
+			}
+
+		}
+	}
+};
+
+printPairs(getPairs(30));
+
+// Time complexity O(2n^2) => O(n^2)
+// memory O(n^2)
+
+</script>
+</body>
+</html>

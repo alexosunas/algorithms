@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Int sqrt</title>
+</head>
+<body>
+    <h1>Int sqrt</h1>
+<script type="text/javascript">
+//CRACKING THE CODING INTERVIEW
+//Example VI.5
+
+let sqrt_help = (number, min, max) =>{
+
+	if(min > max){
+		return -1;
+	}
+	
+	var mid = parseInt((min + max) / 2);
+	var guess = mid * mid;
+	
+	if(guess === number){
+		return mid;
+	}else if(guess > number)
+		return sqrt_help(number, min, mid-1);
+	else{
+		return sqrt_help(number, mid+1, max);
+	}
+};
+
+let getSqrt = (n) => sqrt_help(n, 1, n);
+
+for(let i = 0; i<=10; i++){
+	let num = i * i; 
+	console.log(`Sqrt of ${num} :`, getSqrt(num));
+}
+//complexity is O(log n) since this is only a binary search
+
+//Example VI.6
+let getSqrt2 = (number) => {
+
+	for(let i = 0; (i*i) <= number; i++){
+		let guess = i * i;
+		if(guess === number){
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+for(let i = 0; i<=10; i++){
+	let num = i * i + i; 
+	console.log(`Sqrt of ${num} :`, getSqrt2(num));
+}
+//complexity is O(sqrt(n)) since this is only a binary search
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Int sqrt</title>
+</head>
+<body>
+    <h1>Int sqrt</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example bottlenecks page 67
+
+// let nonArr = [1,2,5,10,11];
+// let sortArr = [1,2,4,6,11];
+let unsortArr = [1,2,7,5,9,2,12,3];
+
+let findDifference = function(arr, difference){
+	//use a Set to do a for each, use has(), avoid any conflict for repeated values
+	let numbers = new Set(arr);
+	let neededNumber = 0;
+
+	numbers.forEach(function(value){
+		neededNumber = value + difference;
+
+		if(numbers.has(neededNumber)){
+			console.log(`(${value}, ${neededNumber})`);
+		}
+	});
+};
+
+findDifference(unsortArr, 2);
+
+// time complexity O(n)
+// memory O(n)
+
+</script>
+</body>
+</html>

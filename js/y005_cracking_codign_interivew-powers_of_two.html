@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Powers of two</title>
+</head>
+<body>
+    <h1>Powers of two</h1>
+<script type="text/javascript">
+//CRACKING THE CODING INTERVIEW
+//Example 16
+
+
+let powersOfTwo = (number) =>{
+	console.log('number : ', number);
+	let last = 0;
+	let current = 0;
+	if(number <= 0){
+		console.log('powers : ', number);
+		return 0;
+	}else if(number === 1){
+		console.log('powers : ', number);
+		return 1;
+	}else{
+		last = powersOfTwo(parseInt(number / 2));
+		current = last * 2;
+		console.log('powers : ', current);
+		return current;
+	}
+
+};
+
+
+powersOfTwo(64);
+
+
+//complexity is O(log n) since n is divided by at half each iteration.
+
+</script>
+</body>
+</html>
