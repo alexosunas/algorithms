@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Permutations of a string</title>
+</head>
+<body>
+    <h1>Permutations of a string</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: DIY page 70, given a smaller string s and a bigger string b, design an algorithm to find all perutations of the shorter string within the longer one. print the location of each permutation.
+
+//Special case: there is a missing permutation, the algorithm has to return back and review that case.
+// let largeString = 'laoqloajf';
+
+//Larger example also includes the special case
+// let largeString = 'zzalqofyrhfnflaoqloajfjnfmncmqoajdfheaqlo';
+// let smallString = 'aloq';
+
+//Small string with different length, also include special case
+// let largeString = 'aslqoalsdkjfgkldh';
+// let smallString = 'aloqs';
+
+//Book example
+// let largeString = 'cbabadcbbabbcbabaabccbabc';
+let largeString = 'ccbabc';
+let smallString = 'abbc';
+
+let findPermutations = function(small, large){
+	let smallArr = small.split('');
+	let largeArr = large.split('');
+	let notFoundCharacters = smallArr.slice();
+	let indexesOfFoundPermutations = [];
+	const smallArrLength = smallArr.length;
+
+	let minLength = largeArr.length;
+
+	for(let i = 0; i < minLength; i++){
+
+		let value = largeArr[i];
+
+		console.log('value : ', value);
+		console.log('notFoundCharacters : ', notFoundCharacters);
+		// if current character of large string is in "not yet found characters" array
+		// it has been found and need to be removed
+		if(notFoundCharacters.includes(value)){
+
+			//Find index of the found character
+			let toRemoveIndex = notFoundCharacters.indexOf(value);
+
+			//Remove found character by index
+			notFoundCharacters.splice(toRemoveIndex, 1);
+
+
+			//If the "not yet found characters" array is empty
+			// That means a permutation was found
+			if(!notFoundCharacters.length){
+
+				let startingIndex = i - (smallArr.length - 1);
+
+				//save the starting index of the found permutation
+				indexesOfFoundPermutations.push(startingIndex);
+
+				//insert the character again to be present for the next possible permutation
+				notFoundCharacters.push(largeArr[startingIndex]);
+			}
+
+
+		}else{
+
+			//If there is 1 element remaining in the array there is a possibility that we miss a permutation
+			//Therefore it has to return and check
+			if(notFoundCharacters.length <= 1){
+
+				//The algorithm has to check for possible missing solutions
+				i = i - (smallArr.length - 1);
+			}
+
+
+			//The "not yet found characters" array has to be restarted
+			notFoundCharacters = smallArr.slice();
+
+		}
+
+	}
+
+	return indexesOfFoundPermutations;
+};
+
+console.log('indexes : ', findPermutations(smallString, largeString));
+
+//l =  large string length, s = small string length
+// Time complexity: most of the time O(l) in some cases it could be O(l * (l/s))
+// memory O(n^2)
+
+</script>
+</body>
+</html>
