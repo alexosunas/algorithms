@@ -10,12 +10,16 @@
 //CRACKING THE CODING INTERVIEW
 //Example: DIY page 70, given a smaller string s and a bigger string b, design an algorithm to find all perutations of the shorter string within the longer one. print the location of each permutation.
 
+//This solution is from:
+//https://gist.github.com/primaryobjects/2b9c5cab5d1459d8b22035893d8f8310
+//and it turned to be a better solution than the one I had so, here it is for studing pourposes :)
+
 //Special case: there is a missing permutation, the algorithm has to return back and review that case.
 // let largeString = 'laoqloajf';
 
 //Larger example also includes the special case
-// let largeString = 'zzalqofyrhfnflaoqloajfjnfmncmqoajdfheaqlo';
-// let smallString = 'aloq';
+let largeString = 'zzalqofyrhfnflaoqloajfjnfmncmqoajdfheaqlo';
+let smallString = 'aloq';
 
 //Small string with different length, also include special case
 // let largeString = 'aslqoalsdkjfgkldh';
@@ -23,75 +27,126 @@
 
 //Book example
 // let largeString = 'cbabadcbbabbcbabaabccbabc';
-let largeString = 'ccbabc';
-let smallString = 'abbc';
+// let largeString = 'ccbabc';
+// let smallString = 'abbc';
+const MAX = 256;
 
-let findPermutations = function(small, large){
-	let smallArr = small.split('');
-	let largeArr = large.split('');
-	let notFoundCharacters = smallArr.slice();
-	let indexesOfFoundPermutations = [];
-	const smallArrLength = smallArr.length;
+/**
+ * @param {string} s largeString
+ * @param {string} p smallString
+ * @return {number[]}
+ */
+var findPermutations = function(s, p) {
+    var result = [];
 
-	let minLength = largeArr.length;
+    if (p.length <= s.length) {
 
-	for(let i = 0; i < minLength; i++){
+        // Build a hash of the letters.
+        var wordHash = {}; // Master copy.
+        var hash = {}; // Current copy.
 
-		let value = largeArr[i];
+        //For each character of p (SmallString) save 2 objects with characters-apparence relationship
+        p.split('').forEach(function(letter) {
+          wordHash[letter] = wordHash[letter] ? wordHash[letter] + 1 : 1;
+          hash[letter] = hash[letter] ? hash[letter] + 1 : 1;
+        });
 
-		console.log('value : ', value);
-		console.log('notFoundCharacters : ', notFoundCharacters);
-		// if current character of large string is in "not yet found characters" array
-		// it has been found and need to be removed
-		if(notFoundCharacters.includes(value)){
+        var count = 0;
+        var index = -1;
 
-			//Find index of the found character
-			let toRemoveIndex = notFoundCharacters.indexOf(value);
+        //iterate the large string
+        for (var i=0; i<s.length; i++) {
 
-			//Remove found character by index
-			notFoundCharacters.splice(toRemoveIndex, 1);
+            //current letter
+            var letter = s[i];
 
+            // if letter exist in current copy and is different of 0 maybe there is permutation
+            if (hash[letter]) {
 
-			//If the "not yet found characters" array is empty
-			// That means a permutation was found
-			if(!notFoundCharacters.length){
+                // Part or start of an anagram.
+                if (index === -1) {
+                    index = i; //index at loop-index
+                }
 
-				let startingIndex = i - (smallArr.length - 1);
+                //Subtract from current copy one digit to the letter that was found
+                hash[letter]--;
+                count++; //increase de counter of the
 
-				//save the starting index of the found permutation
-				indexesOfFoundPermutations.push(startingIndex);
+                //If count equals to the total elemnts in Small String
+                //We found a permutation
+                if (count === p.length) {
 
-				//insert the character again to be present for the next possible permutation
-				notFoundCharacters.push(largeArr[startingIndex]);
-			}
+                    // Completed an anagram.
+                    result.push(index);
 
+                    // Reset variables.
+                    // the letter where index was found need to be added to the current array, in order to look for it again
+                    hash[s[index]]++;
 
-		}else{
+                    //Since there is the posibility to find a new permutation just next to the past one
+                    //Decrease the value of the count by 1
+                    count = p.length - 1;
 
-			//If there is 1 element remaining in the array there is a possibility that we miss a permutation
-			//Therefore it has to return and check
-			if(notFoundCharacters.length <= 1){
+                    //Since there is the posibility to find a new permutation just next to the past one
+                    //Set the index to the next character
+                    index++;
+                }
+            }
+            else { // If the current letter was not found in the current Array of small string
 
-				//The algorithm has to check for possible missing solutions
-				i = i - (smallArr.length - 1);
-			}
+                // Reset variables.
+                //if index different of -1
+                //if current letter does not exist in the Array of small string
+                //if the length of the small string is smaller or equal to large string - index Example sS = 4 < lS = 6 - index = 3 => Result false
+                if (index !== -1 && hash[letter] !== undefined && (p.length <= s.length - index)) {
 
+                    // Find first occurrence of 'letter'. Set the starting point 'index' to next letter.
+                    // from index to loop-index
+                    for (var j=index; j<i; j++) {
 
-			//The "not yet found characters" array has to be restarted
-			notFoundCharacters = smallArr.slice();
+                        //increment index
+                        index++;
 
-		}
+                        //if j en large string equals to current letter break the loop
+                        if (s[j] === letter) {
+                            break;
+                        }
+                        else { //if not
 
-	}
+                            //increment the amount of that letter in the current Array of small string
+                            hash[s[j]]++;
 
-	return indexesOfFoundPermutations;
+                            //Decrease the counter since a the element need to be found again
+                            count--;
+                        }
+                    }
+                }
+                else {
+
+                    // Restore hash and counter.
+                    // array of the keys of current Array of small string
+                    var keys = Object.keys(hash);
+
+                    // copy Original values for each letter
+                    for (var j=0; j<keys.length; j++) {
+                        hash[keys[j]] = wordHash[keys[j]];
+                    }
+
+                    //reset to start looking again
+                    count = 0;
+                    index = -1;
+                }
+            }
+        }
+    }
+
+    return result;
 };
 
-console.log('indexes : ', findPermutations(smallString, largeString));
+console.log('answer ', findPermutations(largeString, smallString));
 
 //l =  large string length, s = small string length
 // Time complexity: most of the time O(l) in some cases it could be O(l * (l/s))
-// memory O(n^2)
 
 </script>
 </body>

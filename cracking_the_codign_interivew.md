@@ -40,3 +40,15 @@
 
 ## O) Print all positive integer - Calculate memory complexity(page 68)
 * See file `y008_all_positive_sums` for implementation in JS and Python folders
+
+## P) DIY page 70, given a smaller string s and a bigger string b
+* See file `y009_cracking_codign_interivew-permutations_of_string` for implementation in JS (Python is missing, can you contribute?) folders
+
+## Q) Simplyfy and generalize page 71
+* See file `y010_cracking_codign_interivew-ransom_note` for implementation in JS and Python folders
+
+## R) Base case and build page 71
+* See file `y011_cracking_codign_interivew-permutations_of_string` for implementation in JS (Python is missing, can you contribute?) folders
+
+## S) Data structure brain storm page 72
+* See file `y012_cracking_codign_interivew-heap_median` for implementation in JS and Python  missing, can you contribute?) folders

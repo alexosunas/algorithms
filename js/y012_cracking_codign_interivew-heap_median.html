@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Heap, Keep track of the median</title>
+</head>
+<body>
+    <h1>Heap, Keep track of the median</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Design an algorithm to print all permutations of a string. unique characters
+
+let randomNumbers = [56, 2, 4, 9, 12, 7, 34, 8];
+
+const heap = function(){
+    let container = [];
+
+    return {
+        insert: function(number){
+            container.push(number);
+            this.insertSort();
+        },
+        insertSort: function(index){
+            index = (index === undefined)? container.length - 1 : index;
+            let lastElement = container[index];
+            let parentIndex = this.getParentIndex(index);
+            let parentValue = container[parentIndex];
+
+            if(parentIndex === -1){
+                return true;
+            }
+
+            if(lastElement < parentValue){
+                container[parentIndex] = lastElement;
+                container[index] = parentValue;
+            }
+            return this.insertSort(parentIndex);
+        },
+        getParentIndex: function(index){
+            let parentIndex = (index - 2) / 2;
+
+            return (parentIndex === -1)? parentIndex : Math.abs(Math.ceil(parentIndex));
+        },
+        getValues: function(){
+            return container;
+        }
+    };
+
+};
+
+const saveInHeap = function(randomNumbers){
+
+    let heapMin = heap();
+    for(let number of randomNumbers){
+        heapMin.insert(number);
+    }
+    console.log(heapMin.getValues());
+};
+
+saveInHeap(randomNumbers);
+
+
+// l = lengt of the string
+// P = permutations - 1
+// s = character in string
+// Time complexity: O(l * (p * s))
+// Memory complexity: O(s + p + l)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Permutations of a string</title>
+</head>
+<body>
+    <h1>Permutations of a string</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Design an algorithm to print all permutations of a string. unique characters
+
+let characters = 'abc';
+
+const generatePermutation = function(characters, index, permutations){
+
+    if(index === characters.length || index === 100){
+        return permutations;
+    }
+
+    characters = (typeof characters === 'string')? characters.split('') : characters;
+    index = index || 1;
+    permutations = permutations || [characters[0]];
+    let currentCharacter = characters[index];
+    let newPerms = [];
+
+        console.log(index);
+    for(let j in permutations){
+
+        let currentPermutation = permutations[j];
+        let permArray = currentPermutation.split('');
+
+        for(let i = 0; i <= permArray.length; i++){
+
+            let copyPem = permArray.slice();
+            copyPem.splice(i, 0, currentCharacter);
+            newPerms.push(copyPem.join(''));
+        }
+    }
+    index++;
+    return generatePermutation(characters, index, newPerms);
+};
+
+console.log('Permutations :', generatePermutation(characters));
+
+// l = lengt of the string
+// P = permutations - 1
+// s = character in string
+// Time complexity: O(l * (p * s))
+// Memory complexity: O(s + p + l)
+
+</script>
+</body>
+</html>

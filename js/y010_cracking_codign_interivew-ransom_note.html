@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ransom note</title>
+</head>
+<body>
+    <h1>Ransom note</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Simplyfy and generalize page 71, Is a "ransom" note formed from an other note(string)?
+
+let note1 = 'abcdeff';
+let note2 = 'abcghii';
+let derived = 'abcff';
+
+let noteRandom = 'sdghsdgiehgiherihgiergierhwigherwhghewrhweklelkerkrh';
+let derivedRandom = 'ghhgdskker';
+let invalid = 'ahhewrs';
+
+const isDerivedNote = function(derivedNote, note){
+    let timesAppear = new Map();
+    derivedNote = derivedNote.split('');
+    note = note.split('');
+
+    for(let letter of derivedNote){
+
+        if(timesAppear.has(letter)){
+            let times = timesAppear.get(letter);
+            timesAppear.set(letter, times + 1);
+
+        }else{
+            timesAppear.set(letter, 1);
+        }
+    }
+
+    let count = derivedNote.length;
+
+    for(let letter of note){
+
+        let times = timesAppear.get(letter);
+        if(times !== undefined && times !== 0){
+             timesAppear.set(letter, times - 1);
+             count --;
+        }
+
+        if(count === 0){
+            return true;
+        }
+    }
+
+    return false;
+};
+
+console.log('is derives note:', isDerivedNote(invalid, noteRandom));
+
+//l = large string length, s = small string length
+// Time complexity: O(l + s)
+// Memory complexity: max of O(s)
+
+</script>
+</body>
+</html>
