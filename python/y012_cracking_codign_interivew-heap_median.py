@@ -1,43 +1,37 @@
-`import heapq
+import heapq
 
-maxh = []
-minh = []
-vals=[1,2,3,4,5,6,7,8,9,10]
-for val in vals:
+randomNumbers = [56, 2, 4, 12, 9, 7, 34, 8, 72, 8]
 
-    # Initialize the data-structure and insert/push the 1st streaming value
-    if not maxh and not minh:
-        heapq.heappush(maxh,-val)
-        print float(val)
-    elif maxh:
+def keepTrackOfMedian(numbers):
+    minHeap = []
+    maxHeap = []
 
-        # print('val : {}'.format(val))
-        print('maxh : {}'.format(maxh))
-        print('minh : {}'.format(minh))
-        # print('- max 0 : {}'.format(-maxh[0]))
+    for number in numbers:
+        print('Number: {}'.format(number))
 
-        print('heapq : {}'.format(heapq))
+        if(not minHeap and not maxHeap):
+            heapq.heappush(maxHeap, number)
+            median = number
+        else:
 
-        # Insert/push the other streaming values
-        if val >= -maxh[0]:
-            heapq.heappush(minh,val)
-        elif val <= -maxh[0]:
-            heapq.heappush(maxh,-val)
+            if(number < maxHeap[0]):
+                heapq.heappush(minHeap, - number)
+                # print('1 Min: {}'.format(minHeap))
+            else:
+                heapq.heappush(maxHeap, number)
 
-        # Calculate the median
-        if len(maxh)==len(minh):
-            print float(-maxh[0]+minh[0])/2
-        elif len(maxh)==len(minh)+1:
-            print float(-maxh[0])
-        elif len(minh)==len(maxh)+1:
-            print float(minh[0])
+            if(len(minHeap) < len(maxHeap)):
+                rootElement = heapq.heappop(maxHeap)
+                heapq.heappush(minHeap, - rootElement)
+            elif(len(minHeap) > len(maxHeap) + 1):
+                rootElement = heapq.heappop(minHeap)
+                heapq.heappush(maxHeap, abs(rootElement))
 
-        # If min-heap and max-heap grow unbalanced we rebalance them by
-        # removing/popping one element from a heap and inserting/pushing
-        # it into the other heap, then we calculate the median
-        elif len(minh)==len(maxh)+2:
-            heapq.heappush(maxh,-heapq.heappop(minh))
-            print float(-maxh[0]+minh[0])/2
-        elif len(maxh)==len(minh)+2:
-            heapq.heappush(minh,-heapq.heappop(maxh))
-            print float(-maxh[0]+minh[0])/2
+            median = minHeap[0]
+
+            print('Min: {}'.format(minHeap))
+            print('Max: {}'.format(maxHeap))
+
+        print('******** Median ********* : {}'.format(abs(median)))
+
+keepTrackOfMedian(randomNumbers)

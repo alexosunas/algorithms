@@ -10,7 +10,7 @@
 //CRACKING THE CODING INTERVIEW
 //Example: Design an algorithm to print all permutations of a string. unique characters
 
-let randomNumbers = [56, 2, 4, 9, 12, 7, 34, 8];
+let randomNumbers = [56, 2, 4, 12, 9, 7, 34, 8, 72, 8];
 
 const heap = function(){
     let container = [];
@@ -41,30 +41,112 @@ const heap = function(){
 
             return (parentIndex === -1)? parentIndex : Math.abs(Math.ceil(parentIndex));
         },
+        getByIndex: function(index){
+            return container[index];
+        },
         getValues: function(){
             return container;
+        },
+        getLength: function(){
+            return container.length;
+        },
+        popRoot: function(){
+
+            let rootElement = container.splice(0, 1)[0];
+            let lastElement = container.pop();
+            container.splice(0, 0, lastElement);
+            this.popSort();
+
+            return rootElement;
+        },
+        popSort: function(index){
+
+            index = (index === undefined)? 0 : index;
+            let leftChildIndex = (index * 2) + 1;
+            let rightChildIndex = (index * 2) + 2;
+            let leftElement = this.getByIndex(leftChildIndex);
+            let rightElement = this.getByIndex(rightChildIndex);
+            let indexElement = this.getByIndex(index);
+
+            //If container length is 1 then nothing else is needed
+            //Or if element at index is smaller than its childs then no further actions are needed
+            if((this.getLength() <= 1) || ((leftElement === undefined || indexElement < leftElement) && (rightElement === undefined || indexElement < rightElement))){
+                return true;
+
+            //Else swap element at index with the smaller of the child elements
+            }else if((rightElement === undefined) || leftElement <= rightElement){
+
+                // [arr[0], arr[2]] = [arr[2], arr[0]];
+                [container[index], container[leftChildIndex]] = [container[leftChildIndex], container[index]];
+                index = leftChildIndex;
+
+            }else{
+
+                [container[index], container[rightChildIndex]] = [container[rightChildIndex], container[index]];
+                indexElement = rightChildIndex;
+            }
+
+            return this.popSort(index);
         }
     };
 
 };
 
-const saveInHeap = function(randomNumbers){
+const keepTrakingOfMedian = function(randomNumbers){
 
     let heapMin = heap();
+    let heapMax = heap();
+    let rootElement;
+    let median;
+
     for(let number of randomNumbers){
-        heapMin.insert(number);
+
+        //If both heaps are epmty then is the first insertion
+        if(!heapMin.getLength() && !heapMax.getLength()){
+            heapMax.insert(number);
+            median = number;
+
+        }else{
+
+            //if number is smaller than root of max elements insert in min
+            if(number < heapMax.getByIndex(0)){
+                heapMin.insert(-number);
+
+            //Else insert in Max
+            }else{
+                heapMax.insert(number);
+            }
+
+            //balance the heaps
+            //If the Min heap length is at least 1 item smaller, then the root element in Max shoul pass to the Min heap
+            if(heapMin.getLength() < heapMax.getLength()){
+
+                //Get root element
+                rootElement = heapMax.popRoot();
+                heapMin.insert(-1 * rootElement);
+
+            //If Min heap length is grater than Max heap length + 1 it should be balanced to keep Max heap only one element smaller than min heap
+            // Example Min = [4, 3, 2, 1], Max = [5, 6] then 4 should pass to Max => Min = [3, 2, 1] Max = [4, 5, 6]
+            }else if(heapMin.getLength() > heapMax.getLength() + 1){
+
+                rootElement = heapMin.popRoot();
+                heapMax.insert(-rootElement);
+            }
+
+            median = Math.abs(heapMin.getByIndex(0));
+            console.log('MIN : ', heapMin.getValues());
+            console.log('MAX : ', heapMax.getValues());
+
+        }
+        console.log("*********************MEDIAN****************** : ", median);
     }
-    console.log(heapMin.getValues());
+
 };
 
-saveInHeap(randomNumbers);
+keepTrakingOfMedian(randomNumbers);
 
-
-// l = lengt of the string
-// P = permutations - 1
-// s = character in string
-// Time complexity: O(l * (p * s))
-// Memory complexity: O(s + p + l)
+// Max Time complexity: O( n * ( n/2 - log(n) ) )
+// Memory complexity: O(n)
 
 </script>
 </body>

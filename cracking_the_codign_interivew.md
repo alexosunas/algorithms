@@ -51,4 +51,4 @@
 * See file `y011_cracking_codign_interivew-permutations_of_string` for implementation in JS (Python is missing, can you contribute?) folders
 
 ## S) Data structure brain storm page 72
-* See file `y012_cracking_codign_interivew-heap_median` for implementation in JS and Python  missing, can you contribute?) folders
+* See file `y012_cracking_codign_interivew-heap_median` for implementation in JS and Python folders
