@@ -101,7 +101,7 @@ const keepTrakingOfMedian = function(randomNumbers){
 
     for(let number of randomNumbers){
 
-        //If both heaps are epmty then is the first insertion
+        //If both heaps are empty then is the first insertion
         if(!heapMin.getLength() && !heapMax.getLength()){
             heapMax.insert(number);
             median = number;
@@ -118,7 +118,7 @@ const keepTrakingOfMedian = function(randomNumbers){
             }
 
             //balance the heaps
-            //If the Min heap length is at least 1 item smaller, then the root element in Max shoul pass to the Min heap
+            //If the Min heap length is at least 1 item smaller, then the root element in Max should pass to the Min heap
             if(heapMin.getLength() < heapMax.getLength()){
 
                 //Get root element
