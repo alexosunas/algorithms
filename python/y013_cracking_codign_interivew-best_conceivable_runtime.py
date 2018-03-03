@@ -5,19 +5,17 @@ def findEquals(a, b):
 	match_elements = []
 	i = 0
 	j = 0
-	while(i < len(a)):
-		while(j < len(b) and i < len(a)):
 
-			if(a[i] == b[j]):
-				match_elements.append(a[i])
-				i += 1
-			elif(a[i] < b[j]):
-				i += 1
-				j -= 1
+	while(j < len(b) and i < len(a)):
 
-			j += 1
+		if(a[i] == b[j]):
+			match_elements.append(a[i])
+			i += 1
+		elif(a[i] < b[j]):
+			i += 1
+			j -= 1
 
-		break
+		j += 1
 
 	return match_elements
 

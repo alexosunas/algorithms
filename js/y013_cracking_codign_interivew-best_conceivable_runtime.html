@@ -18,26 +18,24 @@ let brr = [17, 35, 39, 40, 55, 58, 60, 61, 70, 83, 90];
 
 let findEquals = (a, b) => {
     let matchElements = [];
-    for(let i = 0; i < a.length; i++){
+    let i = 0;
 
-        for(let j = 0; j < b.length && i < a.length; j++){
-            console.log('LOOOOOPPPPPP');
+    for(let j = 0; j < b.length && i < a.length; j++){
+        console.log('LOOOOOPPPPPP');
 
-            console.log(`a ${i} :` , a[i]);
-            console.log(`b ${j} :`, b[j]);
+        console.log(`a ${i} :` , a[i]);
+        console.log(`b ${j} :`, b[j]);
 
-            if(a[i] === b[j]){
-                console.log('MATCH');
-                matchElements.push(a[i]);
-                i++;
+        if(a[i] === b[j]){
+            console.log('MATCH');
+            matchElements.push(a[i]);
+            i++;
 
-            }else if(a[i] < b[j]){
-                i++;
-                j--;
-            }
-
+        }else if(a[i] < b[j]){
+            i++;
+            j--;
         }
-        break;
+
     }
 
     return matchElements;
