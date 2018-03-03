@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Heap, Keep track of the median</title>
+</head>
+<body>
+    <h1>Heap, Keep track of the median</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Best conceivable runtime, Look for equal elements in tow different arrays
+
+// let arr = [1, 2, 4, 5];
+// let brr = [0, 1, 4, 7];
+
+let arr = [13, 27, 35, 40, 49, 55, 59, 83];
+let brr = [17, 35, 39, 40, 55, 58, 60, 61, 70, 83, 90];
+
+let findEquals = (a, b) => {
+    let matchElements = [];
+    for(let i = 0; i < a.length; i++){
+
+        for(let j = 0; j < b.length && i < a.length; j++){
+            console.log('LOOOOOPPPPPP');
+
+            console.log(`a ${i} :` , a[i]);
+            console.log(`b ${j} :`, b[j]);
+
+            if(a[i] === b[j]){
+                console.log('MATCH');
+                matchElements.push(a[i]);
+                i++;
+
+            }else if(a[i] < b[j]){
+                i++;
+                j--;
+            }
+
+        }
+        break;
+    }
+
+    return matchElements;
+};
+
+console.log(findEquals(arr, brr));
+
+
+// Max Time complexity: O(n)
+// Memory complexity: O(1)
+
+</script>
+</body>
+</html>

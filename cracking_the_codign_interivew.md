@@ -52,3 +52,6 @@
 
 ## S) Data structure brain storm page 72
 * See file `y012_cracking_codign_interivew-heap_median` for implementation in JS and Python folders
+
+## T) Data structure brain storm page 73
+* See file `y013_cracking_codign_interivew-best_conceivable_runtime` for implementation in JS and Python folders
