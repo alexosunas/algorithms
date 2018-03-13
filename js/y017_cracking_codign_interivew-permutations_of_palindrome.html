@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Permutation of a palindrome</title>
+</head>
+<body>
+    <h1>Permutation of a palindrome</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Given a string, write a function to check if it is a permutation of a palindrome
+// "taco cat" => "atco cta"
+
+let isPermutationOfPalindrome = (palindrome) =>{
+	let components = getComponents(palindrome);
+
+	console.log('components : ', components);
+
+	if(!arePalindromeComponents(components)){
+		console.log('arePalindromeComponents(components) : ', arePalindromeComponents(components));
+		return false;
+	}
+
+	let permutations = generatePermutations(components.duplicated.join(''));
+
+	return build(components, permutations);
+};
+
+let getComponents = (palindrome) =>{
+	let components = {
+		single: [],
+		duplicated: [],
+		spaces: []
+	};
+
+	for(let index = 0; index < palindrome.length; index++){
+		let character = palindrome[index];
+		console.log('index', index);
+		console.log('character', character);
+
+		let cahrIndex = components.single.indexOf(character);
+
+		if(character === ' '){
+			components.spaces.push(index);
+
+		}else if(cahrIndex === -1){
+			components.single.push(character);
+
+		}else{
+			components.single.splice(cahrIndex, 1);
+			components.duplicated.push(character);
+		}
+	}
+
+	return components;
+};
+
+let arePalindromeComponents = (components) =>{
+	let isPalindrome = true;
+
+	console.log('components.single.length', components.single.length);
+
+	if(components.single.length > 1){
+		isPalindrome = false;
+	}
+
+	return isPalindrome;
+};
+
+let generatePermutations = function(characters, index, permutations){
+
+    if(index === characters.length || index === 100){
+        return permutations;
+    }
+
+    characters = (typeof characters === 'string')? characters.split('') : characters;
+    index = index || 1;
+    permutations = permutations || [characters[0]];
+    let currentCharacter = characters[index];
+    let newPerms = [];
+
+        console.log(index);
+    for(let j in permutations){
+
+        let currentPermutation = permutations[j];
+        let permArray = currentPermutation.split('');
+
+        for(let i = 0; i <= permArray.length; i++){
+
+            let copyPem = permArray.slice();
+            copyPem.splice(i, 0, currentCharacter);
+            newPerms.push(copyPem.join(''));
+        }
+    }
+    index++;
+    return generatePermutations(characters, index, newPerms);
+};
+
+let build = (components, permutations) =>{
+	let builds = [];
+
+	for(let option of permutations){
+		// let option = option.split('');
+		let reverse = option.split('').reverse().join('');
+		let single  = components.single[0] || '';
+		let optionBuild = option + single + reverse;
+		builds.push(addSpaces(components.spaces, optionBuild));
+	}
+
+	return builds;
+};
+
+let addSpaces = (spaces, option) => {
+	option = option.split('');
+	for(let spacePosition of spaces){
+		option.splice(spacePosition, 0, ' ');
+	}
+
+	return option.join('');
+};
+
+
+let x = isPermutationOfPalindrome('amor roma');
+console.log('Result : ', x);
+
+// l = lengt of the string
+// P = permutations - 1
+// s = character in string
+
+// i = spaces In string
+
+// Max Time complexity: 	O(n) + O(n * (p * s)) + (p * i)	=	O(n + n * (p * s) + (p * i))
+// Memory complexity: 		O(n/2) + O(p) + O(p) 			=	O(n/2 + 2p)
+
+</script>
+</body>
+</html>

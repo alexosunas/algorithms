@@ -55,3 +55,19 @@
 
 ## T) Data structure brain storm page 73
 * See file `y013_cracking_codign_interivew-best_conceivable_runtime` for implementation in JS and Python folders
+
+## U) binary number (passed as string) equals the hexadecimal representation of a string page 79
+* See file `y014_cracking_codign_interivew-binary_equals_hexadecimal` for implementation in JS (Python missing) folders
+
+## V) a string has all unique characters (page 90)
+* See file `y015_cracking_codign_interivew-has_unique_characters` for implementation in JS (Python missing) folders
+
+## W) writhe a method to replace all spaces in a string with '%20'(page 90)
+* See file `y016_cracking_codign_interivew-uri_encode` for implementation in JS (Python missing) folders
+
+## X) Given a string, write a function to check if it is a permutation of a palindrome (page 91)
+* See file `y017_cracking_codign_interivew-permutations_of_palindrome` for implementation in JS (Python missing) folders
+
+## Y) Given two strings write a function to check if they are one edit (or zero edits) away (page 91)
+* See file `y018_cracking_codign_interivew-one_edit_away` for implementation in JS (Python missing) folders
+

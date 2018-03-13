@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matching numbers</title>
+</head>
+<body>
+    <h1>Matching numbers</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
+
+//Try #1 FAILED :)
+let hasUniqueCharactersSplit = (s, count = 0) =>{
+    let stringLength = s.length;
+
+    if(s.length <= 1 || count >= 50){
+        return true;
+    }
+
+    for(let i = 0, j = stringLength - 1; i < j && j > i; i++){
+
+        if(s.charAt(i) === s.charAt(j)){
+            return false;
+        }
+
+        j--;
+    }
+
+    let half = Math.floor(stringLength/2);
+
+    count ++;
+    if(!hasUniqueCharactersSplit(s.substring(0, half), count) || !hasUniqueCharactersSplit(s.substring(half), count)){
+        return false;
+    }else{
+        return true;
+    }
+};
+
+
+// Try #2 succed
+let hasUniqueCharactersSort = (s, count = 0) =>{
+    let stringLength = s.length;
+
+    if(s === false){
+        return s;
+    }else if(stringLength <= 1){
+
+        if(count === 0){
+            return true
+        }else{
+            return s;
+        }
+    }
+
+    let half = Math.floor(stringLength/2);
+    let leftHalf = s.substring(0, half);
+    let rightHalf = s.substring(half);
+
+    count++;
+
+    let leftResp = hasUniqueCharactersSort(leftHalf, count);
+    let rightResp = hasUniqueCharactersSort(rightHalf, count);
+    if(leftResp === false || rightResp === false){
+        return false;
+    }else{
+        let merged = mergeChars(leftResp.split(''), rightResp.split(''));
+        console.log('Merged : ', merged)
+        if(count === 1 && merged !== false){
+            return true
+        }else{
+            return merged;
+        }
+    }
+};
+
+let mergeChars = (leftChars, rightChars) =>{
+    let merged = [];
+    while(leftChars.length && rightChars.length){
+        if(leftChars[0] === rightChars[0]){
+            return false;
+
+        }else if(leftChars[0] < rightChars[0]){
+            merged.push(leftChars.shift());
+
+        }else{
+            merged.push(rightChars.shift());
+        }
+    }
+
+    while(leftChars.length){
+        merged.push(leftChars.shift());
+    }
+
+    while(rightChars.length){
+        merged.push(rightChars.shift());
+    }
+    // console.log('Merged : ', merged.join(''))
+    return merged.join('');
+
+};
+
+let stringsArr = [
+    'a',
+    '',
+    'ab',
+    'abb',
+    'abc',
+    'abcdefcg',
+    '1234qwer5678asdf3zxcv',
+    'zxcvbnmlk1jhgfdsapoiuyt1rewq09876',
+    '12340987poiuqwerlkjhasdfmnbvzxc'
+]; //['abcdefcg'];
+
+for(let value of stringsArr){
+    console.log(`does "${value}" has unique characters? : ${hasUniqueCharactersSort(value)}`);
+}
+
+// Max Time complexity: O(n log n) //same aproach than merge sort
+// Memory complexity: O(n)
+
+</script>
+</body>
+</html>

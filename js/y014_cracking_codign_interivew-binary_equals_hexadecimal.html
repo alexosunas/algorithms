@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matching numbers</title>
+</head>
+<body>
+    <h1>Matching numbers</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: Check if the value of a binary number (passed as string) equals the hexadecimal representation of a string
+
+let compareBinToHEx = (binNumber, hexNumber) => {
+    let binToDecimal = convertByBase(binNumber, 2);
+    let hexToDecimal = convertByBase(hexNumber, 16);
+
+    if(binToDecimal < 0 || hexToDecimal < 0){
+        return false;
+    }
+
+    return binToDecimal === hexToDecimal;
+};
+
+
+let convertByBase = (number, base) =>{
+
+    let value = 0;
+    let aux = 0;
+
+    if(base < 2 || (base > 10 && base !== 16)){
+        return -1;
+    }
+
+    for(let i = number.length - 1; i >= 0; i--){
+
+        let digit = digitToValue(number.charAt(i));
+
+        if(digit < 0 || digit >= base){
+            return -1;
+        }
+
+        let exp = number.length - 1 - i;
+        aux = digit * Math.pow(base, exp);
+        value += aux;
+    }
+
+    return value;
+};
+
+let digitToValue = (digit) =>{
+    let value = -1;
+    if(!isNaN(digit)){
+        value = parseInt(digit);
+    }else{
+        switch(digit){
+            case 'a':
+                value = 10;
+                break;
+            case 'b':
+                value = 11;
+                break;
+            case 'c':
+                value = 12;
+                break;
+            case 'd':
+                value = 13;
+                break;
+            case 'e':
+                value = 14;
+                break;
+            case 'f':
+                value = 15;
+                break;
+        }
+    }
+
+    return value;
+};
+
+let decString = '110';
+let hexString = '6';
+
+console.log('are equal? : ', compareBinToHEx(decString, hexString));
+
+
+// Max Time complexity: O(a + b)
+// Memory complexity: O(1)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>URLify</title>
+</head>
+<body>
+    <h1>URLify</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: write a method to replace all spaces in a string with '%20'
+// "Mr John Smith    " => "Mr%20John%20Smith"
+
+const CHARS_TO_REPLACE = 4;
+const REPLACEMENT = '%20';
+const REP_LENGTH = REPLACEMENT.length;
+
+let replaced = "Mr John Smith   ".replace(/[\s]+/g, REPLACEMENT);
+let theSubstring = replaced.substring(replaced.length - REP_LENGTH);
+
+console.log('replaced:', replaced);
+console.log('REPLACEMENT:', REPLACEMENT);
+console.log('substring:', theSubstring);
+
+if(theSubstring === REPLACEMENT){
+    console.log('simon');
+    replaced = replaced.substring(0, replaced.length - REP_LENGTH);
+}
+
+console.log('replaced:', replaced);
+
+
+// Max Time complexity: O(1)
+// Memory complexity: O(1)
+
+</script>
+</body>
+</html>

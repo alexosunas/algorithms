@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>One edit away</title>
+</head>
+<body>
+    <h1>One edit away</h1>
+<script type="text/javascript">
+'use strict';
+//CRACKING THE CODING INTERVIEW
+//Example: there are three types of edit that can be performed on strings: insert a character
+// Remove a character, or replace a character. Given two strings write a function to check if they are one edit (or zero edits) away.
+
+let isInEditScope = (a, b) =>{
+	let aLength = a.length;
+	let bLength = b.length;
+	let difference = Math.abs(aLength - bLength);
+	let charsA = a.split('');
+	let charsB = b.split('');
+	let errors = 0;
+	let [small, large] = (aLength < bLength)? [charsA, charsB] : [charsB, charsA];
+	let j = 0;
+
+	if(difference > 1){
+		return false;
+	}
+
+	for(let index in large){
+
+		if(small[j] !== large[index]){
+			errors++;
+
+			if(difference){
+				j--;
+			}
+		}
+		if(errors > 1){
+			return false;
+		}
+
+		j++;
+	}
+
+	return true;
+};
+
+let baseString = 'abcd';
+let stringsArr = ['abcde', 'acd', 'ebcd', 'abcdef', 'cd', 'cdba', 'ebcf', 'abf', 'abfde'];
+
+for(let value of stringsArr){
+	console.log(`is ${value} at one edit (or zero edits) from ${baseString} : `, isInEditScope(baseString, value));
+}
+
+// Max Time complexity: O(n)
+// Memory complexity: 	O(a + b)
+
+</script>
+</body>
+</html>
