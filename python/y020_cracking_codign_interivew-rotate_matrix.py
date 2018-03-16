@@ -1,4 +1,4 @@
-# gven an image represented by an NxN matrix
+# Given an image represented by an NxN matrix
 # write a method to rotate the image by 90 degrees
 
 def rotateMatrix(image):
