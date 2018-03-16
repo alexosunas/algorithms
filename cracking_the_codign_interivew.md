@@ -74,6 +74,6 @@
 ## z) implement a method to perform basic string compression using the counts of repeated characters (page 91)
 * See file `y019_cracking_codign_interivew-compress_string` for implementation in Python (JS missing) folders
 
-## A1) gven an image represented by an NxN matrix write a method to rotate the image by 90 degrees (page 91)
+## A1) Given an image represented by an NxN matrix write a method to rotate the image by 90 degrees (page 91)
 * See file `y020_cracking_codign_interivew-rotate_matrix` for implementation in Python (JS missing) folders
 
