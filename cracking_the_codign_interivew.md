@@ -77,3 +77,6 @@
 ## A1) Given an image represented by an NxN matrix write a method to rotate the image by 90 degrees (page 91)
 * See file `y020_cracking_codign_interivew-rotate_matrix` for implementation in Python (JS missing) folders
 
+## A1) write an algorithm such that if an element in a matrix MxN is 0, its entire row and column are set to 0 (page 91)
+* See file `y021_cero_matrix` for implementation in C (JS missing and Python missing) folders
+

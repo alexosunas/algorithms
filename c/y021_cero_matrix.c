@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+// write an algorithm such that if an element in a matrix MxN is 0, its entire row and column are set to 0
+// time complexiti O(M x N) + N + M = O(M + N)
+// memory complexity O(1)
+
 void printMatrix(int (*matrix)[3])
 {
 	printf("Address \t\t Indexes \t\t Values \n");
