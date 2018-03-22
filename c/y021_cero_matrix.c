@@ -1,20 +1,40 @@
 #include <stdio.h>
 
-int *cleanCuadrant(int matrixLength, int rowLength, int (*matrix)[matrixLength], int index)
+void printMatrix(int (*matrix)[3])
 {
-	printf("matrixLength : %d \n", matrixLength);
-	printf("rowLength : %d \n", rowLength);
-	printf("*matrix : %d \n", matrix[1][1]);
+	printf("Address \t\t Indexes \t\t Values \n");
+	for(int i = 0; i < 3; i++){
+		for(int j = 0; j < 3; j++){
+			printf("%p \t\t [%d][%d] \t\t %d \n", &matrix[i][j], i, j, matrix[i][j]);
+		}
+	}
+}
 
+void cleanRowInMatrix(int* row, int matrixLength)
+{
+	printf("row : %p \n", row);
+	printf("*rox %d \n", *row);
+	int i;
+	for(i = 0; i < matrixLength; i++){
+		row[i] = 0;
+	}
+}
+
+void cleanColumnInMatrix(int matrixLength, int (*matrix)[matrixLength], int index)
+{
+	int i;
+	for(i = 0; i < matrixLength; i++){
+		matrix[i][index] = 0;
+	}
+}
+
+void cleanCuadrant(int matrixLength, int rowLength, int (*matrix)[matrixLength], int index)
+{
 	int i;
 	int j;
 	int found = 0;
 	for(i = 0; i < matrixLength; i++){
 		for(j = 0; j < rowLength; j++){
-			printf("i : %d \n", i);
-			printf("j : %d \n", j);
-			printf("index : %d \n", index);
-			printf("matrix[i][j] : %d \n", matrix[i][j]);
 			if(index == matrix[i][j]){
 				printf("FOUND WE \n");
 				found = 1;
@@ -30,32 +50,11 @@ int *cleanCuadrant(int matrixLength, int rowLength, int (*matrix)[matrixLength],
 	printf("2i : %d \n", i);
 	printf("2j : %d \n", j);
 
-// 	return matrix;
-
-// 	// if(i < imgLength){
-// 	// 	cleanRowInMatrix(&fakeImage[i]);
-// 	// 	cleanColumnInMatrix(&fakeImage, j);
-// 	// }
+	if(i < matrixLength){
+		cleanRowInMatrix(*(matrix+i), matrixLength);
+		cleanColumnInMatrix(matrixLength, matrix, j);
+	}
 }
-
-// 	return fakeImage;
-// }
-
-// int cleanRowInMatrix(*row)
-// {
-// 	int i;
-// 	for(i = 0; i < imgLength; i++){
-// 		*row[i] = 0;
-// 	}
-// }
-
-// int cleanColumnInMatrix(*matrix, index)
-// {
-// 	int i;
-// 	for(i = 0; i < imgLength; i++){
-// 		*matrix[i][index] = 0;
-// 	}
-// }
 
 int main()
 {
@@ -65,32 +64,15 @@ int main()
 	   {8, 9, 10}
 	};
 
-
-
 	int imgLength = sizeof(fakeImage) / sizeof(fakeImage[0]);
 	printf("imgLength : %d \n", imgLength);
 
 	int rowLength = sizeof(fakeImage[0]) / sizeof(fakeImage[0][0]);
 	printf("rowLength : %d \n", rowLength);
 
-	// printMatrix(fakeImage);
+	printMatrix(fakeImage);
 
-	cleanCuadrant(imgLength, rowLength, &fakeImage, 5);
+	cleanCuadrant(imgLength, rowLength, fakeImage, 5);
 
-	// printMatrix(fakeImage);
+	printMatrix(fakeImage);
 }
-
-// void printMatrix(matrix)
-// {
-// 	int numberOfLines = sizeof(fakeImage) / sizeof(fakeImage[0]);
-// 	int numberColumns = sizeof(fakeImage[0]) / sizeof(fakeImage[0][0]);
-// 	int row, columns;
-// 	for (int row=0; row<numberOfLines; row++)
-// 	{
-// 	    for(int columns=0; columns<numberColumns; columns++)
-//         {
-//          printf("%d     ", matrix[row][columns]);
-//         }
-// 	    printf("\n");
-// 	}
-// }

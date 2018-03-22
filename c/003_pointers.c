@@ -9,7 +9,7 @@ int main()
 
 	//Is a convention to name your pointer starting with lower case p
 	//This will make reference to the same memory address as &mariachi
-	int * pMariachi = &mariachi;
+	int* pMariachi = &mariachi;
 
 	//Will print the same result but now using the pointer
 	printf("%p \t %s \t %d \n", pMariachi, "mariach", mariachi);
@@ -25,7 +25,8 @@ int main()
 	*pMariachi = 20;
 
 	//both make reference to the same value.
-	printf("\n *pMariachi : %d \n", *pMariachi);
+	printf("\n *pMariachi : %d \n", pMariachi);
+	printf("\n *pMariachi + 1: %d \n", pMariachi+1);
 	printf("\n mariachi : %d \n", mariachi);
 
 	//ARRAYS
@@ -68,13 +69,13 @@ int main()
 	printf("\n *(image)[0] : %d \n", *(image)[0]);
 	printf("\n *(image)[1]) : %d \n", *(image)[1]);
 	printf("\n *(image+1)[0] : %d \n", *(image+1)[0]);
-	printf("\n *(image+1)[1] : %d \n", *(image+1)[1]);
+	printf("\n *(image+1)[1] : %d \n", (*(image+1))[1]);
 
 	printf("\n indexes \t Address \t \t value \n");
 	printf("image[1][1] \t %p \t %d \n", &image[0][0], image[0][0]);
 	printf("image[1][1] \t %p \t %d \n", &image[1][1], image[1][1]);
 
-	int **sameImage = image;
+	int** sameImage = image;
 
 	printf("\n sameImage : %p \n", sameImage);
 	// printf("\n sameImage[1][1] : %d \n", sameImage[0][0]);
